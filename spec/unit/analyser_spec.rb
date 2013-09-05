@@ -10,14 +10,14 @@ describe "analysers" do
       big_obama_data = stub_face_data(big_obama){|img| img.face_data }
       small_obama_data = stub_face_data(small_obama){|img| img.face_data }
       
-      big_eye_x = big_obama_data['tags'].first['eye_right']['x']
-      small_eye_x = small_obama_data['tags'].first['eye_right']['x']
+      big_mouth_x = big_obama_data.first['mouth_right']['x']
+      small_mouth_x = small_obama_data.first['mouth_right']['x']
       
-      big_eye_x.should be_kind_of Float
-      small_eye_x.should be_kind_of Float
+      big_mouth_x.should be_kind_of Float
+      small_mouth_x.should be_kind_of Float
       
       # compare positioning (percentages)
-      small_eye_x.should be_within(1.0).of(small_eye_x)
+      small_mouth_x.should be_within(1.0).of(small_mouth_x)
     end
   end
   
@@ -37,16 +37,16 @@ describe "analysers" do
       big_obama_data = stub_face_data(big_obama){|img| img.face_data_as_px }
       small_obama_data = stub_face_data(small_obama){|img| img.face_data_as_px }
       
-      big_eye_x = big_obama_data['tags'].first['eye_right']['x']
-      small_eye_x = small_obama_data['tags'].first['eye_right']['x']
+      big_mouth_x = big_obama_data.first['mouth_right']['x']
+      small_mouth_x = small_obama_data.first['mouth_right']['x']
       
-      big_eye_x.should be_kind_of Float
-      small_eye_x.should be_kind_of Float
-      big_eye_x.should_not be_within(1.0).of(small_eye_x)
+      big_mouth_x.should be_kind_of Float
+      small_mouth_x.should be_kind_of Float
+      big_mouth_x.should_not be_within(1.0).of(small_mouth_x)
       
       scale = big_obama_data['width'] / small_obama_data['width'].to_f
       # compare positioning (px)
-      big_eye_x.should be_within(5.0).of(small_eye_x * scale)
+      big_mouth_x.should be_within(5.0).of(small_mouth_x * scale)
     end
   end
   
